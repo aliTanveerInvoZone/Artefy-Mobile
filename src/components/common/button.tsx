@@ -1,38 +1,20 @@
-import React from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  GestureResponderEvent,
-} from 'react-native';
-import Colors from '../../Utils/colors';
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity, GestureResponderEvent } from "react-native";
+import Colors from "../../Utils/colors";
 
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 type Props = {
   title: string;
   onPress: (event: GestureResponderEvent) => void;
-  backgroundColor: any;
+  backgroundColor?: any;
 };
 
-const Button: React.FC<Props> = ({
-  title = '',
-  onPress,
-  backgroundColor = Colors.BUTTON_COLOR,
-}) => {
+const Button: React.FC<Props> = ({ title = "", onPress, backgroundColor = Colors.BUTTON_COLOR }) => {
   return (
-    <TouchableOpacity
-      onPress={onPress}
-      style={[styles.mainContainer, {backgroundColor: backgroundColor}]}>
-      <View
-        style={{width: '80%', justifyContent: 'center', alignItems: 'center'}}>
-        <Text style={{fontWeight: 'bold', color: Colors.THEME_BLACK}}>
-          {title}
-        </Text>
+    <TouchableOpacity onPress={onPress} style={[styles.mainContainer, { backgroundColor: backgroundColor }]}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.titleText}>{title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -44,10 +26,19 @@ const styles = StyleSheet.create({
     height: hp(5),
     borderRadius: wp(10),
 
-    flexDirection: 'row',
-    borderColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
+    flexDirection: "row",
+    borderColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  innerContainer: {
+    width: "80%",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  titleText: {
+    fontWeight: "bold",
+    color: Colors.THEME_BLACK,
   },
 });
 
